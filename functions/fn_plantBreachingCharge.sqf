@@ -17,6 +17,7 @@
 //systemChat "AMP_fnc_plantBreachingCharge";
 params ["_bc"];
 if !(local _bc) exitWith {}; //systemChat "Not local!"};
+if (isDedicated) exitWith {}; //systemChat "Server!"};
 
 0 = [_bc] spawn {
 	params ["_bc"];
