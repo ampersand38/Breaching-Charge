@@ -1,10 +1,10 @@
 /*
  * Author: Ampers
  * Prepares the things to breach on explosion. 
- * Called by AMP_Breaching_Charge_Place >> EventHandlers >> Deleted
+ * Called by AMP_Breaching_Charge_Place >> EventHandlers >> Init
  *
  * Arguments:
- * 0: Breaching Charge <OBJECT>
+ * 0: AMP_Breaching_Charge_Place <OBJECT>
  *
  * Return Value:
  * NONE
@@ -14,8 +14,8 @@
  *
  */
 
-//systemChat "AMP_fnc_plantBreachingCharge";
 params ["_bc"];
+//systemChat "AMP_fnc_plantBreachingCharge";
 if !(local _bc) exitWith {}; //systemChat "Not local!"};
 if (isDedicated) exitWith {}; //systemChat "Server!"};
 
@@ -61,8 +61,9 @@ if (isDedicated) exitWith {}; //systemChat "Server!"};
 					(0 < parseNumber (_snsplit select 1))
 				) then {
 					if ((_c distance (_t modelToWorld (_t selectionPosition _x))) < _r) then {
+						//_t hideSelection [_x, true];	//hide, doesn't work
 						_an = _x+"_rot";
-						_t animate [_an, 1, true];	//Open
+						_t animate [_an, 1, true];	//open
 					};
 				};
 			} count selectionNames _t;

@@ -24,6 +24,7 @@ class CfgFunctions {
         class functions {
             file = "\AMP_Breaching_Charge\functions";
             class plantBreachingCharge;
+			class rotateAmmoObj;
         };
     };
 };
@@ -37,6 +38,7 @@ class CfgAmmo
 		indirectHit = 10;
 		indirectHitRange = 3;
 		model = "\A3\Weapons_F\Explosives\mine_SLAM_directional";
+		mineModelDisabled = "\A3\Weapons_F\Explosives\mine_SLAM_directional";
 		defaultMagazine = "AMP_Breaching_Charge_Mag";
 		ace_explosives_magazine = "AMP_Breaching_Charge_Mag";
 		ace_explosives_Explosive = "AMP_Breaching_Charge_Ammo_Scripted";
@@ -44,6 +46,14 @@ class CfgAmmo
 	};
 	class AMP_Breaching_Charge_Ammo_Scripted: AMP_Breaching_Charge_Ammo
 	{
+	};
+	class AMP_Breaching_Charge_Timer_Ammo: AMP_Breaching_Charge_Ammo
+	{
+		mineTrigger = "TimeTrigger";
+	};
+	class AMP_Breaching_Charge_Command_Ammo: AMP_Breaching_Charge_Ammo
+	{
+		mineTrigger = "RemoteTrigger";
 	};
 };
 
@@ -59,10 +69,10 @@ class CfgMagazines
 		mass = 10;
 		model = "\A3\Weapons_F\Explosives\mine_SLAM_directional_i";
 		picture = "\A3\Weapons_F\Data\UI\gear_mine_SLAM_directional_CA.paa";
-		descriptionShort = "A breaching charge takes down walls, doors, and other obstacles with minimal collateral damage.";
+		descriptionShort = "A breaching charge takes down obstacles like walls and doors with minimal collateral damage.";
 		class Library
 		{
-			libTextDesc = "A breaching charge takes down walls, doors, and other obstacles with minimal collateral damage.";
+			libTextDesc = "A breaching charge takes down obstacles like walls and doors with minimal collateral damage.";
 		};
 		displayName = "Breaching Charge";
 		ace_explosives_SetupObject = "AMP_Breaching_Charge_Place";
@@ -70,6 +80,17 @@ class CfgMagazines
 		class ACE_Triggers
 		{
 			SupportedTriggers[] = {"Timer","Command"};
+			/*
+			class Timer
+			{
+				ammo = "AMP_Breaching_Charge_Timer_Ammo";
+			};
+			class Command
+			{
+				ammo = "AMP_Breaching_Charge_Command_Ammo";
+				fuseTime = 0.5;
+			};
+			*/
 		};
 	};
 };
@@ -96,6 +117,7 @@ class CfgVehicles
 		class EventHandlers
 		{
 			Init = "[_this select 0] call AMP_fnc_plantBreachingCharge;";
+			Deleted = "[_this select 0] call AMP_fnc_rotateAmmoObj;";
 		};
 	};
 };
