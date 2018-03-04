@@ -15,12 +15,12 @@
  */
 
 params ["_bc"];
-//systemChat "AMP_fnc_plantBreachingCharge";
-if !(local _bc) exitWith {}; //systemChat "Not local!"};
-if (isDedicated) exitWith {}; //systemChat "Server!"};
 
 0 = [_bc] spawn {
 	params ["_bc"];
+	//systemChat "AMP_fnc_plantBreachingCharge";
+	if !(local _bc) exitWith {}; //systemChat "Not local!"};
+	if (isDedicated) exitWith {}; //systemChat "Server!"};
 	private ["_bcp","_wl","_tl"];
 	
 	_bcp = getPosASL _bc;
