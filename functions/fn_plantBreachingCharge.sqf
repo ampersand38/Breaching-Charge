@@ -42,7 +42,7 @@ params ["_bc"];
 		private ["_r","_c","_p","_ts","_t","_snsplit","_an"];
 		_r = 2;
 		_c = (_this select 0);
-		_p = getPosASL _c;
+		_p = (getPosASL _c) vectorAdd [0,0,0.5];
 		_ts = lineIntersectsObjs [
 			_p, 
 			_p vectorAdd (vectorUp _c), 
