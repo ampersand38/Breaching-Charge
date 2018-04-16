@@ -53,23 +53,30 @@ params ["_bc"];
 		};
 		_t = _ts select 0;
 		if (_t isKindOf "HOUSE") then {	//door
-			{
-				_snsplit = _x splitString "_";
-				if (
-					(count _snsplit == 2) &&
-					((_snsplit select 0) isEqualTo "door") && 
-					(0 < parseNumber (_snsplit select 1))
-				) then {
-					if ((_c distance (_t modelToWorld (_t selectionPosition _x))) < _r) then {
-						//_t hideSelection [_x, true];	//hide, doesn't work
-						_an = _x+"_rot";
-						_t animate [_an, 1, true];	//open
+			if (typeOf _t select [0,15] == "Land_jbad_wall_") then {
+				_t setDamage 1;
+			} else {
+				{
+					_snsplit = _x splitString "_";
+					if (
+						(count _snsplit == 2) &&
+						((_snsplit select 0) isEqualTo "door") && 
+						(0 < parseNumber (_snsplit select 1))
+					) then {
+						if ((_c distance (_t modelToWorld (_t selectionPosition _x))) < _r) then {
+							//_t hideSelection [_x, true];	//hide, doesn't work
+							_an = _x+"_rot";
+							_t animate [_an, 1, true];	//open
+						};
 					};
-				};
-			} count selectionNames _t;
+				} count selectionNames _t;
+			};
 		} else {	//wall
 			if (_t in nearestTerrainObjects [_t,["WALL","FENCE"],0.1]) then {_t setDamage 1;} else {
-				if ((_t isKindOf "WALL") || (_t isKindOf "FENCE")) then {_t setDamage 1;};
+				if (
+					(_t isKindOf "WALL") || 
+					(_t isKindOf "FENCE")
+				) then {_t setDamage 1;};
 			};
 		};
 		//clean up
