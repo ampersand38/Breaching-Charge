@@ -65,7 +65,11 @@ params ["_bc"];
 					) then {
 						if ((_c distance (_t modelToWorld (_t selectionPosition _x))) < _r) then {
 							//_t hideSelection [_x, true];	//hide, doesn't work
-							_an = _x+"_rot";
+							if (typeOf _t select [0,16] == "Land_jbad_House_") then {
+								_an = _x;
+							} else {
+								_an = _x+"_rot";
+							};
 							_t animate [_an, 1, true];	//open
 						};
 					};
