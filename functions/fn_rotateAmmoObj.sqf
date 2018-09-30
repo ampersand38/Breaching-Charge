@@ -10,14 +10,13 @@
  * NONE
  *
  * Example:
- * [_breachingCharge] call AMP_fnc_rotateAmmoObj;
+ * _breachingCharge call AMP_fnc_rotateAmmoObj;
  *
  */
 
-params ["_bc"];
-if !(local _bc) exitWith {}; //systemChat "Not local!"};
+if !(local _this) exitWith {}; //systemChat "Not local!"};
 
-0 = [(getPosATL _bc)] spawn {
+0 = [(getPosATL _this)] spawn {
 	params ["_p"];
 	//systemChat "AMP_fnc_rotateAmmoObj";
 	if (isDedicated) exitWith {}; //systemChat "Server!"};
@@ -30,10 +29,10 @@ if !(local _bc) exitWith {}; //systemChat "Not local!"};
 		_ammo = _p nearObjects ["AMP_Breaching_Charge_Ammo",0.5];
 		count _ammo > 0
 	};
-	if !(local (_ammo select 0)) exitWith {}; //systemChat "Not local!"};
+	if !(local (_ammo # 0)) exitWith {}; //systemChat "Not local!"};
 	
 	//systemChat "Found AMP_Breaching_Charge_Ammo!";
-	(_ammo select 0) setVectorUp [0,-1,0];
+	(_ammo # 0) setVectorUp [0,-1,0];
 };
 
 true
