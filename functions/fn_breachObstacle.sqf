@@ -55,7 +55,7 @@ if (_t isKindOf "HOUSE") then {
 	private _position0 = [];
 	private _position1 = [];
 	if (typeOf _c == "Land_MetalWire_F") then {
-		_position0 = (getPos _c) vectorAdd [0,0,0.5];
+		_position0 = (getPosASL _c) vectorAdd [0,0,0.5];
 		_position1 = _position0 vectorAdd (vectorUp _c);
 	};
 	if (_c isEqualTo player) then {
@@ -64,7 +64,7 @@ if (_t isKindOf "HOUSE") then {
 		_position1 = positionCameraToWorld [0, 0, 10];
 	};
 	
-	_intersections = [_t, "GEOM"] intersect [_position0, _position1];
+	_intersections = [_t, "GEOM"] intersect [ASLtoAGL _position0, ASLtoAGL _position1];
 	
 	private _door = toLower (_intersections select 0 select 0);
 
