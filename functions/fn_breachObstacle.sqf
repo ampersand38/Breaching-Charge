@@ -55,7 +55,7 @@ if (_t isKindOf "HOUSE") then {
 	private _position0 = [];
 	private _position1 = [];
 	if (typeOf _c == "Land_MetalWire_F") then {
-		_position0 = (getPosASL _c) vectorAdd [0,0,0.5];
+		_position0 = (getPosASL _c) vectorAdd [0,0,0];
 		_position1 = _position0 vectorAdd (vectorUp _c);
 	};
 	if (_c isEqualTo player) then {
@@ -81,7 +81,7 @@ if (_t isKindOf "HOUSE") then {
 	if (({_x == _door} count _ans) > 0) then {
 		_an = _door + "";
 	};
-	if (({_x == "door_1_rot"} count _ans) > 0) then {
+	if (({_x == (_door + "_rot")} count _ans) > 0) then {
 		_an = _door + "_rot";
 	};
 	if (_an == "") exitWith {
@@ -89,4 +89,4 @@ if (_t isKindOf "HOUSE") then {
 	};
 	_t animate [_an, 1, true];	//open
 };
-true
+_an
