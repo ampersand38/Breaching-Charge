@@ -10,7 +10,6 @@ class CfgAmmo {
         defaultMagazine = "AMP_Breaching_Charge_Mag";
         ace_explosives_magazine = "AMP_Breaching_Charge_Mag";
         ace_explosives_Explosive = "AMP_Breaching_Charge_Ammo_Scripted";
-
     };
     class AMP_Breaching_Charge_Ammo_Scripted: AMP_Breaching_Charge_Ammo {};
 
