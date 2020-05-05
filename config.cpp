@@ -1,8 +1,7 @@
 #include "BIS_AddonInfo.hpp"
-class CfgPatches
-{
-	class AMP_Breaching_Charge
-	{
+
+class CfgPatches {
+	class AMP_Breaching_Charge {
 		// Meta information for editor
 		name = "Breaching Charge";
 		author = "Ampersand";

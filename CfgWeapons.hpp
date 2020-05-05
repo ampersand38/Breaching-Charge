@@ -1,5 +1,4 @@
-class CfgWeapons
-{
+class CfgWeapons {
 	class Default;
 	class Put: Default {
 		muzzles[] += {AMP_Breaching_Charge_Muzzle};
