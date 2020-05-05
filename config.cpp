@@ -5,7 +5,6 @@ class CfgPatches {
         // Meta information for editor
         name = "Breaching Charge";
         author = "Ampersand";
-
         requiredVersion = 1.56;
         requiredAddons[] = {
             "A3_Weapons_F_Explosives",

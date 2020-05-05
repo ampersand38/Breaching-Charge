@@ -2,6 +2,7 @@ class CfgVehicles {
     class SLAMDirectionalMine;
     class AMP_Breaching_Charge: SLAMDirectionalMine {
         author = "Ampersand";
+        _generalMacro = "AMP_Breaching_Charge";
         ammo = "AMP_Breaching_Charge_Ammo";
         displayName = "Breaching Charge";
     };
