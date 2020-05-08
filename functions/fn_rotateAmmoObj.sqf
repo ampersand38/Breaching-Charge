@@ -17,22 +17,22 @@
 if !(local _this) exitWith {}; //systemChat "Not local!"};
 
 0 = [(getPosATL _this)] spawn {
-	params ["_p"];
-	//systemChat "AMP_fnc_rotateAmmoObj";
-	if (isDedicated) exitWith {}; //systemChat "Server!"};
-	
-	//createVehicle ["Sign_Sphere25cm_F", _p, [], 0, "CAN_COLLIDE"];	//testing
-	
-	private ["_ammo"];
-	_ammo = [];
-	waitUntil {
-		_ammo = _p nearObjects ["AMP_Breaching_Charge_Ammo",0.5];
-		count _ammo > 0
-	};
-	if !(local (_ammo # 0)) exitWith {}; //systemChat "Not local!"};
-	
-	//systemChat "Found AMP_Breaching_Charge_Ammo!";
-	(_ammo # 0) setVectorUp [0,-1,0];
+    params ["_p"];
+    //systemChat "AMP_fnc_rotateAmmoObj";
+    if (isDedicated) exitWith {}; //systemChat "Server!"};
+    
+    //createVehicle ["Sign_Sphere25cm_F", _p, [], 0, "CAN_COLLIDE"];    //testing
+    
+    private ["_ammo"];
+    _ammo = [];
+    waitUntil {
+        _ammo = _p nearObjects ["AMP_Breaching_Charge_Ammo",0.5];
+        count _ammo > 0
+    };
+    if !(local (_ammo # 0)) exitWith {}; //systemChat "Not local!"};
+    
+    //systemChat "Found AMP_Breaching_Charge_Ammo!";
+    (_ammo # 0) setVectorUp [0,-1,0];
 };
 
 true
