@@ -12,8 +12,8 @@ class CfgVehicles {
         displayName = "Breaching Charge";
 
         class EventHandlers {
-            init = "(_this select 0) call amp_fnc_plantBreachingCharge;";
-            deleted = "(_this select 0) call amp_fnc_rotateAmmoObj;";
+            init = "(_this select 0) call bcdw_main_fnc_plantBreachingCharge;";
+            deleted = "(_this select 0) call bcdw_main_fnc_rotateAmmoObj;";
         };
     };
 };

@@ -1,7 +1,7 @@
 /*
  * Author: Ampers
  * Finds the selectionName of the nearest door on a house
- * Called by AMP_fnc_breachObstacle
+ * Called by bcdw_main_fnc_breachObstacle
  *
  * Arguments:
  * 0: Position <OBJECT>
@@ -12,8 +12,8 @@
  * selectionName <STRING>
  *
  * Example:
- * [_pos, _house] call AMP_fnc_nearestDoor;
- * [getPos get3DENCamera, nearestObject [getPos get3DENCamera, "HOUSE"], 20] call AMP_fnc_nearestDoor;
+ * [_pos, _house] call bcdw_main_fnc_nearestDoor;
+ * [getPos get3DENCamera, nearestObject [getPos get3DENCamera, "HOUSE"], 20] call bcdw_main_fnc_nearestDoor;
  */
 
 params ["_p", "_h", ["_r", 5, [0]]];

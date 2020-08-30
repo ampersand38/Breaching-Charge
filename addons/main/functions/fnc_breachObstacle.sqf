@@ -1,7 +1,7 @@
 /*
  * Author: Ampers
  * Checks the obstacle and destroys it or opens the door
- * Called by AMP_fnc_plantBreachingCharge
+ * Called by bcdw_main_fnc_plantBreachingCharge
  *
  * Arguments:
  * 0: Breaching Charge <OBJECT>
@@ -11,14 +11,13 @@
  * NONE
  *
  * Example:
- * [_charge, _obstacle] call AMP_fnc_breachObstacle;
- * [player, cursorObject] call compile preprocessFileLineNumbers "fn_breachObstacle.sqf";
+ * [player, cursorObject] call bcdw_main_fnc_breachObstacle;
  */
 
 params ["_c", "_t"];
 //editor wall
 if ((_t isKindOf "WALL") || (_t isKindOf "FENCE")) then {
-    
+
     //some objs don't die >_> MBG shoothouses so gotta move it out of the way
     0 = _t spawn {
         //get height
@@ -40,7 +39,7 @@ if ((_t isKindOf "WALL") || (_t isKindOf "FENCE")) then {
 };
 //terrain wall
 if (_t in (nearestTerrainObjects [position _c, ["WALL", "FENCE"], 10])) then {
-    
+
     //some objs don't die >_> MBG shoothouses so gotta move it out of the way
     0 = _t spawn {
         _this setDamage 1;
@@ -51,7 +50,7 @@ if (_t in (nearestTerrainObjects [position _c, ["WALL", "FENCE"], 10])) then {
 //house
 if (_t isKindOf "HOUSE") then {
     //systemChat "It's a house. Try to open the door";
-    
+
     private _position0 = [];
     private _position1 = [];
     if (typeOf _c == "Land_MetalWire_F") then {
@@ -63,9 +62,9 @@ if (_t isKindOf "HOUSE") then {
         _position0 = positionCameraToWorld [0, 0, 0];
         _position1 = positionCameraToWorld [0, 0, 10];
     };
-    
+
     _intersections = [_t, "GEOM"] intersect [ASLtoAGL _position0, ASLtoAGL _position1];
-    
+
     private _door = toLower (_intersections select 0 select 0);
 
     if (isNil "_door") exitWith {[_t, ""]};
@@ -74,7 +73,7 @@ if (_t isKindOf "HOUSE") then {
     if ((_door find "glass") != -1) then {
         _door = [10, _t, _door] call ace_interaction_fnc_getGlassDoor;
     };
-    
+
     private _an = "";
     //check pattern of door animationNames
     private _ans = animationNames _t;

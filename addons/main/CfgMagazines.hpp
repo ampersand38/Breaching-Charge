@@ -6,10 +6,10 @@ class CfgMagazines {
         author = "Ampersand";
         ammo = "AMP_Breaching_Charge_Ammo";
         mass = 10;
-        descriptionShort = "A breaching charge takes down obstacles like walls and doors with minimal collateral damage.";
+        descriptionShort = "A main charge takes down obstacles like walls and doors with minimal collateral damage.";
 
         class Library {
-            libTextDesc = "A breaching charge takes down obstacles like walls and doors with minimal collateral damage.";
+            libTextDesc = "A main charge takes down obstacles like walls and doors with minimal collateral damage.";
         };
         displayName = "Breaching Charge";
         ace_explosives_SetupObject = "AMP_Breaching_Charge_Place";
