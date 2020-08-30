@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 class CfgPatches {
-    class ADDON {
+    class AMP_Door_Wedge {
         name = COMPONENT_NAME;
         units[] = {"AMP_Door_Wedge_Place"};
         weapons[] = {"AMP_Door_Wedge"};

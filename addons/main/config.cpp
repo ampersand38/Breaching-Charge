@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 class CfgPatches {
-    class ADDON {
+    class AMP_Breaching_Charge {
         name = COMPONENT_NAME;
         units[] = {"AMP_Breaching_Charge","AMP_Breaching_Charge_Place","AMP_Door_Wedge_Place"};
         weapons[] = {"AMP_Breaching_Charge_Muzzle"};
