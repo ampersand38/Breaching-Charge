@@ -19,6 +19,8 @@
     params ["_bc"];
 
     private _bcp = getPosASL _bc;
+    private _tl = lineIntersectsSurfaces [_bcp, _bcp vectorDiff (vectorDir _bc), _bc, objNull, true, 1, "GEOM"];
+
     if (_tl isEqualTo []) exitWith {}; //systemChat "No intersections!";};
     if (_tl select 0 select 3 isEqualTo objNull) exitWith {}; //systemChat "Nothing to stick to!"};
     _tl select 0 params ["_ip","_nv","_io","_t"];
