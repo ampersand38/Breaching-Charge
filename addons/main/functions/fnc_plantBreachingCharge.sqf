@@ -17,19 +17,14 @@
 
 0 = [_this] spawn {
     params ["_bc"];
-    //systemChat "bcdw_main_fnc_plantBreachingCharge";
-    if !(local _bc) exitWith {}; //systemChat "Not local!"};
-    if (isDedicated) exitWith {}; //systemChat "Server!"};
-    private ["_bcp","_wl","_tl"];
 
-    _bcp = getPosASL _bc;
-    _tl = lineIntersectsSurfaces [_bcp, _bcp vectorDiff (vectorDir _bc), _bc, objNull];
+    private _bcp = getPosASL _bc;
     if (_tl isEqualTo []) exitWith {}; //systemChat "No intersections!";};
     if (_tl select 0 select 3 isEqualTo objNull) exitWith {}; //systemChat "Nothing to stick to!"};
     _tl select 0 params ["_ip","_nv","_io","_t"];
 
     // wire loop
-    _wl = createVehicle ["Land_MetalWire_F", ASLToAGL _ip vectorAdd (_nv vectorMultiply 0.08), [], 0, "CAN_COLLIDE"];
+    private _wl = createVehicle ["Land_MetalWire_F", ASLToAGL _ip vectorAdd (_nv vectorMultiply 0.08), [], 0, "CAN_COLLIDE"];
     _wl setVectorDirAndUp [[0,0,-1], [0,0,0] vectorDiff _nv];
 
     //attach
