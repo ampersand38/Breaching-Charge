@@ -14,9 +14,11 @@
  * [player, cursorObject] call bcdw_main_fnc_breachObstacle;
  */
 
+systemChat str _this;
+
 params ["_c", "_t"];
 //editor wall
-if ((_t isKindOf "WALL") || (_t isKindOf "FENCE")) then {
+if ((_t isKindOf "WALL") || (_t isKindOf "FENCE")) exitWith {
 
     //some objs don't die >_> MBG shoothouses so gotta move it out of the way
     0 = _t spawn {
@@ -38,7 +40,7 @@ if ((_t isKindOf "WALL") || (_t isKindOf "FENCE")) then {
     };
 };
 //terrain wall
-if (_t in (nearestTerrainObjects [position _c, ["WALL", "FENCE"], 10])) then {
+if (_t in (nearestTerrainObjects [ASLtoAGL getPosWorld _t, ["WALL", "FENCE"], 1])) exitWith {
 
     //some objs don't die >_> MBG shoothouses so gotta move it out of the way
     0 = _t spawn {
@@ -48,7 +50,7 @@ if (_t in (nearestTerrainObjects [position _c, ["WALL", "FENCE"], 10])) then {
     };
 };
 //house
-if (_t isKindOf "HOUSE") then {
+if (_t isKindOf "HOUSE") exitWith {
     //systemChat "It's a house. Try to open the door";
 
     private _position0 = [];
@@ -87,5 +89,12 @@ if (_t isKindOf "HOUSE") then {
         //systemChat "Could not find a matching animationName";
     };
     _t animate [_an, 1, true];    //open
+};
+//tree
+if (
+    _t in (nearestTerrainObjects [ASLtoAGL getPosWorld _t, ["TREE", "SMALL TREE"], 1])
+    || {_t isKindOf "Base_CUP_Tree"}
+) exitWith {
+    _t setDamage [1, true, _c];
 };
 _an
