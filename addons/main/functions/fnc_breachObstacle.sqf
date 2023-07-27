@@ -14,7 +14,7 @@
  * [player, cursorObject] call bcdw_main_fnc_breachObstacle;
  */
 
-systemChat str _this;
+//systemChat str _this;
 
 params ["_c", "_t"];
 //editor wall
