@@ -14,39 +14,43 @@
  * [player, cursorObject] call bcdw_main_fnc_breachObstacle;
  */
 
+#define LOD_GEOMETRY 1e13
+
 //systemChat str _this;
 
 params ["_c", "_t"];
 //editor wall
 if ((_t isKindOf "WALL") || (_t isKindOf "FENCE")) exitWith {
 
+    _t setDamage [1, true, _c];
     //some objs don't die >_> MBG shoothouses so gotta move it out of the way
-    0 = _t spawn {
+    0 = _this spawn {
+        params ["_c", "_t"];
         //get height
-        private _box = boundingBox _this;
-        private _bw0 = _this modelToWorld _box # 0;
-        private _bw1 = _this modelToWorld _box # 1;
+        private _box = boundingBox _t;
+        private _bw0 = _t modelToWorld _box # 0;
+        private _bw1 = _t modelToWorld _box # 1;
         private _h = _bw1 # 2 - _bw0 # 2;
-        private _p = getPos _this;
+        private _p = getPos _t;
         //drop it
         private _d = 0;
         while {_d < _h} do {
             _d = _d + 0.1;
-            _this setPos [_p # 0, _p # 1, _p # 2 - _d];
+            _t setPos [_p # 0, _p # 1, _p # 2 - _d];
             sleep 0.04;
         };
-        _this setDamage 1;
-        deleteVehicle _this;
+        deleteVehicle _t;
     };
 };
 //terrain wall
-if (_t in (nearestTerrainObjects [ASLtoAGL getPosWorld _t, ["WALL", "FENCE"], 1])) exitWith {
+if (tolower ((_t namedProperties [LOD_GEOMETRY]) get "map") in ["wall", "fence"]) exitWith {
 
     //some objs don't die >_> MBG shoothouses so gotta move it out of the way
-    0 = _t spawn {
-        _this setDamage 1;
+    _t setDamage [1, true, _c];
+    0 = _this spawn {
+        params ["_c", "_t"];
         sleep 1;
-        hideObjectGlobal _this;
+        hideObjectGlobal _t;
     };
 };
 //house
@@ -92,7 +96,7 @@ if (_t isKindOf "HOUSE") exitWith {
 };
 //tree
 if (
-    _t in (nearestTerrainObjects [ASLtoAGL getPosWorld _t, ["TREE", "SMALL TREE"], 1])
+    tolower ((_t namedProperties [LOD_GEOMETRY]) get "map") in ["tree", "small tree"]
     || {_t isKindOf "Base_CUP_Tree"}
 ) exitWith {
     _t setDamage [1, true, _c];
